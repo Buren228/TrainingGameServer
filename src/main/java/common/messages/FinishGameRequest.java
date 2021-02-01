@@ -8,4 +8,10 @@ public class FinishGameRequest {
 
     public GameResult result;
 
+ //   public FinishGameRequest(){}
+
+    public FinishGameRequest(GameResult result){
+        this.result=result;
+    }
+
 }
