@@ -25,4 +25,17 @@
         </entry>
     </util:map>
 
+    <bean id="userProfileConfig" class="server.domain.UserProfile">
+        <constructor-arg value="10000"/>
+        <property name="name" value="name"/>
+        <property name="inventory"><list/></property>
+        <property name="backpack"><list/></property>
+        <property name="friends"><set/></property>
+        <property name="rating" value="0"/>
+        <property name="energy" value="25"/>
+        <property name="experience" value="0"/>
+        <property name="level" value="1"/>
+        <property name="money" value="100"/>
+    </bean>
+
 </beans>
