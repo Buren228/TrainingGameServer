@@ -1,16 +1,11 @@
 package server.controller;
 
-import common.messages.FinishGameRequest;
 import common.messages.StartGameRequest;
 import common.messages.StartGameResponse;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import platform.service.MessageController;
 import server.common.ProfileState;
 import server.domain.UserProfile;
-
-import java.util.Arrays;
 
 @Service
 public class StartGameController implements MessageController<StartGameRequest, UserProfile> {

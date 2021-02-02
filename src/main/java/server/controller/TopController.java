@@ -1,7 +1,5 @@
 package server.controller;
 
-import common.messages.Ping;
-import common.messages.StartGameRequest;
 import common.messages.TopRequest;
 import common.messages.TopResponse;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +17,7 @@ public class TopController implements MessageController<TopRequest, UserProfile>
     @Override
     public TopResponse onMessage(TopRequest topRequest, UserProfile userProfile) {
         var topResponse = new TopResponse();
-        topResponse.topPlayers=topPlayersConfig;
+        topResponse.topPlayers = topPlayersConfig;
         return topResponse;
     }
 

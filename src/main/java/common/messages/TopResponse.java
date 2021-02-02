@@ -3,7 +3,7 @@ package common.messages;
 import server.domain.TopItem;
 import server.domain.UserProfile;
 
-import java.util.*;
+import java.util.List;
 
 public class TopResponse {
 

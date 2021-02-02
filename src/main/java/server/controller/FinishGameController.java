@@ -2,7 +2,6 @@ package server.controller;
 
 import common.messages.FinishGameRequest;
 import common.messages.FinishGameResponse;
-import common.messages.StartGameRequest;
 import org.springframework.stereotype.Service;
 import platform.service.MessageController;
 import server.common.GameResult;
