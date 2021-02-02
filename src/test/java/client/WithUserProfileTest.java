@@ -1,9 +1,6 @@
 package client;
 
-import common.messages.FinishGameRequest;
-import common.messages.FinishGameResponse;
-import common.messages.StartGameRequest;
-import common.messages.StartGameResponse;
+import common.messages.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -11,6 +8,7 @@ import server.common.GameResult;
 import server.common.ProfileState;
 import server.controller.FinishGameController;
 import server.controller.StartGameController;
+import server.controller.TopController;
 import server.domain.UserProfile;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -83,5 +81,11 @@ public class WithUserProfileTest {
         assertSame(2,userProfile2.getLevel());
         assertSame(120,userProfile2.getEnergy());
 
+    }
+
+    @Test
+    public void topPlayersTest(){
+        new TopController().onMessage(new TopRequest(),new UserProfile(123));
+        assert new TopController().onMessage(new TopRequest(),new UserProfile(123)).topPlayers.get(0).getName().equals("player1");
     }
 }
