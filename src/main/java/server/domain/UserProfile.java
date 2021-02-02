@@ -4,34 +4,51 @@ import common.dto.UserProfileStructure;
 import platform.domain.IUser;
 import server.common.ProfileState;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-public class UserProfile implements IUser {
+@Entity
+@Table(name = "user_profile")
 
+public class UserProfile implements IUser {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public final int id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "level")
     private int level;
 
+    @Column(name = "experience")
     private int experience;
 
+    @Column(name = "energy")
     private int energy;
 
+    @Column(name = "rating")
     private int rating;
 
+    @Column(name = "money")
     private int money;
 
+    @Column(name = "backpack")
     private List<BackpackItem> backpack;
 
+    @Column(name = "inventory")
     private List<InventoryItem> inventory;
 
+    @Column(name = "friends")
     private Set<Integer> friends;
 
+    @Column(name = "state")
     private ProfileState state = ProfileState.MAIN_MENU;
 
+    @Column(name = "change_name_timer")
     private LocalDateTime changeNameTimer;
 
     public UserProfile(int id) {
