@@ -19,8 +19,14 @@ public class WithUserProfileTest {
 
     ApplicationContext context = new FileSystemXmlApplicationContext("classpath:beans.xml");
     UserProfile userProfile = (UserProfile) context.getBean("userProfileConfig");
+
     StartGameController sgc = new StartGameController();
+
     FinishGameController fgc = new FinishGameController();
+
+    FinishGameRequest winReq = new FinishGameRequest(GameResult.WIN);
+
+    FinishGameRequest defeatReq = new FinishGameRequest(GameResult.DEFEAT);
 
     @Test
     public void userProfileTest() {
@@ -45,8 +51,7 @@ public class WithUserProfileTest {
         startGameResponse = sgc.onMessage(new StartGameRequest(), userProfile1);
         assertSame(2, startGameResponse.errorCode);
 
-        FinishGameRequest winReq = new FinishGameRequest(GameResult.WIN);
-        FinishGameRequest defeatReq = new FinishGameRequest(GameResult.DEFEAT);
+
         FinishGameResponse finishGameResponse = fgc.onMessage(winReq, userProfile1);
         assertSame(110, userProfile1.getMoney());
         assertSame(10, userProfile1.getExperience());
@@ -66,4 +71,17 @@ public class WithUserProfileTest {
         assertSame(0, userProfile1.getRating());
     }
 
+    @Test
+    public void lvlUpTest() {
+        UserProfile userProfile2= userProfile;
+
+        userProfile2.setExperience(14);
+        sgc.onMessage(new StartGameRequest(), userProfile2);
+        fgc.onMessage(winReq, userProfile2);
+
+        assertSame(4,userProfile2.getExperience());
+        assertSame(2,userProfile2.getLevel());
+        assertSame(120,userProfile2.getEnergy());
+
+    }
 }

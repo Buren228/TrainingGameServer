@@ -24,7 +24,7 @@ public class FinishGameController implements MessageController<FinishGameRequest
                 userProfile.setMoney(userProfile.getMoney() + 10);
                 userProfile.setRating(userProfile.getRating() + 3);
 
-                return new FinishGameResponse();
+                return new FinishGameResponse(userProfile);
             } else
 //            if (finishGameRequest.result.equals(GameResult.DEFEAT)) {
                 userProfile.setState(ProfileState.MAIN_MENU);
@@ -34,7 +34,7 @@ public class FinishGameController implements MessageController<FinishGameRequest
                 userProfile.setRating(userProfile.getRating() - 1);
             }
 
-            return new FinishGameResponse();
+            return new FinishGameResponse(userProfile);
 //            } else {
 //                var finishGameResponse = new FinishGameResponse();
 //                finishGameResponse.errorCode = 2;
@@ -42,7 +42,7 @@ public class FinishGameController implements MessageController<FinishGameRequest
 //                return finishGameResponse;
 //            }
         } else {
-            var finishGameResponse = new FinishGameResponse();
+            var finishGameResponse = new FinishGameResponse(userProfile);
             finishGameResponse.errorCode = 1;
             finishGameResponse.errorMessage = "The game isn't over yet!";
             return finishGameResponse;

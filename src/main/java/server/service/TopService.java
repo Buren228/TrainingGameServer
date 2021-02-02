@@ -11,13 +11,13 @@ public class TopService {
 
     private List<TopItem> topList;
 
-    public void onRatingChange(UserProfile profile){
-        //toto update topList
+    public void onRatingChange(UserProfile profile) {
+        //todo update topList
     }
 
-    public List<TopItem> getTopList(){
+    public List<TopItem> getTopList() {
         //todo return TOP 10 items
         return Collections.emptyList();
     }
-    
+
 }
