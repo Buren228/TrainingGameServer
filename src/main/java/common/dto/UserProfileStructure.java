@@ -3,6 +3,7 @@ package common.dto;
 import server.domain.BackpackItem;
 import server.domain.InventoryItem;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class UserProfileStructure {
@@ -26,6 +27,8 @@ public class UserProfileStructure {
     public InventoryItem[] inventory;
 
     public int[] friends;
+
+    public LocalDateTime changeNameTimer;
 
     @Override
     public String toString() {

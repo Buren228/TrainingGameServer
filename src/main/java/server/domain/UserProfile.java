@@ -4,6 +4,7 @@ import common.dto.UserProfileStructure;
 import platform.domain.IUser;
 import server.common.ProfileState;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -30,6 +31,8 @@ public class UserProfile implements IUser {
     private Set<Integer> friends;
 
     private ProfileState state = ProfileState.MAIN_MENU;
+
+    private LocalDateTime changeNameTimer;
 
     public UserProfile(int id) {
         this.id = id;
@@ -60,6 +63,7 @@ public class UserProfile implements IUser {
         dto.backpack = backpack.toArray(new BackpackItem[0]);
         dto.inventory = inventory.toArray(new InventoryItem[0]);
         dto.friends = friends.stream().mapToInt(i -> i).toArray();
+        dto.changeNameTimer = changeNameTimer;
         return dto;
     }
 
@@ -141,6 +145,14 @@ public class UserProfile implements IUser {
 
     public void setState(ProfileState state) {
         this.state = state;
+    }
+
+    public LocalDateTime getChangeNameTimer() {
+        return changeNameTimer;
+    }
+
+    public void setChangeNameTimer(LocalDateTime changeNameTimer) {
+        this.changeNameTimer = changeNameTimer;
     }
 
     @Override

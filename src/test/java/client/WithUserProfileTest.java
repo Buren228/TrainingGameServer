@@ -6,10 +6,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import server.common.GameResult;
 import server.common.ProfileState;
+import server.controller.ChangeNameController;
 import server.controller.FinishGameController;
 import server.controller.StartGameController;
 import server.controller.TopController;
 import server.domain.UserProfile;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -71,21 +74,28 @@ public class WithUserProfileTest {
 
     @Test
     public void lvlUpTest() {
-        UserProfile userProfile2= userProfile;
+        UserProfile userProfile2 = userProfile;
 
         userProfile2.setExperience(14);
         sgc.onMessage(new StartGameRequest(), userProfile2);
         fgc.onMessage(winReq, userProfile2);
 
-        assertSame(4,userProfile2.getExperience());
-        assertSame(2,userProfile2.getLevel());
-        assertSame(120,userProfile2.getEnergy());
+        assertSame(4, userProfile2.getExperience());
+        assertSame(2, userProfile2.getLevel());
+        assertSame(120, userProfile2.getEnergy());
 
     }
 
     @Test
-    public void topPlayersTest(){
-        new TopController().onMessage(new TopRequest(),new UserProfile(123));
-        assert new TopController().onMessage(new TopRequest(),new UserProfile(123)).topPlayers.get(0).getName().equals("player1");
+    public void topPlayersTest() {
+        new TopController().onMessage(new TopRequest(), new UserProfile(123));
+        assert new TopController().onMessage(new TopRequest(), new UserProfile(123)).topPlayers.get(0).getName().equals("player1");
+    }
+
+    @Test
+    public void changeNameTest() {
+        userProfile.setChangeNameTimer(LocalDateTime.now().minusDays(5));
+        new ChangeNameController().onMessage(new ChangeNameRequest(), userProfile);
+        assert LocalDateTime.now().plusDays(1).isEqual(userProfile.getChangeNameTimer());
     }
 }
