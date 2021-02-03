@@ -24,7 +24,7 @@ public class ConnectAndLoginTests {
     protected static String uid = UUID.randomUUID().toString();
 
     protected void connect() {
-        clientConnection = new ClientConnection("localhost", 5000).connect();
+        clientConnection = new ClientConnection("localhost", 5432).connect();
     }
 
     @Test

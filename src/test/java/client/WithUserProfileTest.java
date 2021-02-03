@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class WithUserProfileTest {
 
+
     ApplicationContext context = new FileSystemXmlApplicationContext("classpath:beans.xml");
     UserProfile userProfile = (UserProfile) context.getBean("userProfileConfig");
 

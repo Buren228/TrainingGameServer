@@ -24,16 +24,17 @@ public class FinishGameController implements MessageController<FinishGameRequest
                 userProfile.setRating(userProfile.getRating() + 3);
 
                 return new FinishGameResponse(userProfile);
-            } else
+            } else {
 //            if (finishGameRequest.result.equals(GameResult.DEFEAT)) {
                 userProfile.setState(ProfileState.MAIN_MENU);
 
-            userProfile.setExperience(userProfile.getExperience() + 3);
-            if (userProfile.getRating() > 0) {
-                userProfile.setRating(userProfile.getRating() - 1);
-            }
+                userProfile.setExperience(userProfile.getExperience() + 3);
+                if (userProfile.getRating() > 0) {
+                    userProfile.setRating(userProfile.getRating() - 1);
+                }
 
-            return new FinishGameResponse(userProfile);
+                return new FinishGameResponse(userProfile);
+            }
 //            } else {
 //                var finishGameResponse = new FinishGameResponse();
 //                finishGameResponse.errorCode = 2;
